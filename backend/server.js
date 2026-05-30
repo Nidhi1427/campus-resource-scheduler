@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const bookingRoutes = require('./routes/bookingRoutes');
-const resourceRoutes = require('./routes/resourceRoutes'); // 1. Import resource routes
+const resourceRoutes = require('./routes/resourceRoutes'); 
+const aiRoutes = require('./routes/aiRoutes');
 
 dotenv.config();
 connectDB();
@@ -15,7 +16,9 @@ app.use(express.json());
 
 // Parent Routes
 app.use('/api/bookings', bookingRoutes);
-app.use('/api/resources', resourceRoutes); // 2. Mount resource routes
+app.use('/api/resources', resourceRoutes); 
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/ai', aiRoutes);
 
 const PORT = process.env.PORT || 5000;
 
